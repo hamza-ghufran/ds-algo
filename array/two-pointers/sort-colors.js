@@ -1,20 +1,53 @@
-// // Input: nums = [2,0,2,1,1,0]
-// // Output: [0,0,1,1,2,2]
+//  Problem: [Leet Code 75] Sort Colors https://leetcode.com/problems/sort-colors/description/
+
+/**
+ * @param {number[]} nums
+ * @return {void} Do not return anything, modify nums in-place instead.
+ */
+ var sortColors = function (nums) {
+
+  let a = 0;
+  let b = nums.length - 1
+
+  let i = 0
+
+  while (i < nums.length && i <= b) {
+    const eleAtStartPointer = nums[a]
+    const eleAtEndPointer = nums[b]
+
+    const currEle = nums[i]
+
+    if (currEle === 0) {
+      if (eleAtStartPointer !== 0) {
+        let temp = nums[a]
+        /**  real deal */
+        nums[a] = currEle
+        /**  real deal */
+        nums[i] = temp
+      }
+
+      a++
+    }
+    else if (currEle === 2) {
+      if (eleAtEndPointer !== 2) {
+        let temp = nums[b]
+        nums[b] = currEle
+        nums[i] = temp
+      }
+      i--
+      b--
+    }
+
+    i++
+  }
+
+  console.log(nums)
+
+  return nums
+};
 
 
-// [2,0,2,1,1,0]
+const nums = [2, 0, 1]
 
 
-// [2,4,2,1,1,0]
-//  i         j
-
-//  [2, 0, 1]
-//  [0, 4, 2]
-//  [0, 2, 4]
-//   j     i
-
-
-//   [2, 0, 1] 
-//   [1, 0, 2] 
-//   [0, 1, 2] 
-//    j     i
+console.log(sortColors(nums))
