@@ -1,4 +1,4 @@
-//  Problem: [Leet Code 22] https://leetcode.com/problems/generate-parentheses/submissions/915728978/
+//  Problem: [Leet Code 22] https://leetcode.com/problems/generate-parentheses/
 
 // open only if les than equal to n
 // close if only close < open
@@ -10,37 +10,37 @@
  */
 var generateParenthesis = function (n) {
 
-    let closeCount = 0
-    let openCount = 0
-    const ans = []
+  let closeCount = 0
+  let openCount = 0
+  const ans = []
 
-    function buildParanthesis(n, arr) {
-        if (openCount === closeCount) {
-            if (closeCount === n) {
-                ans.push(JSON.parse(JSON.stringify(arr.join().replace(/\,/g, ''))))
-                return
-            }
-        }
-        if (openCount <= n) {
-            arr.push('(')
-            openCount++
-            buildParanthesis(n, arr)
-            arr.pop()
-            openCount--
-        }
-        if (closeCount < openCount) {
-            arr.push(')')
-            closeCount++
-            buildParanthesis(n, arr)
-            arr.pop()
-            closeCount--
-        }
+  function buildParanthesis(n, arr) {
+    if (openCount === closeCount) {
+      if (closeCount === n) {
+        ans.push(JSON.parse(JSON.stringify(arr.join().replace(/\,/g, ''))))
+        return
+      }
     }
+    if (openCount <= n) {
+      arr.push('(')
+      openCount++
+      buildParanthesis(n, arr)
+      arr.pop()
+      openCount--
+    }
+    if (closeCount < openCount) {
+      arr.push(')')
+      closeCount++
+      buildParanthesis(n, arr)
+      arr.pop()
+      closeCount--
+    }
+  }
 
-    const arr = []
+  const arr = []
 
-    buildParanthesis(n, arr)
-    return ans
+  buildParanthesis(n, arr)
+  return ans
 }
 
 // console.log(generateParenthesis(8))
